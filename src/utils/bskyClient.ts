@@ -15,7 +15,7 @@ export const bskyClient = new NodeOAuthClient({
     client_name: 'Sky Tools',
     client_uri: 'https://skytools.chitowarlock.com',
     // logo_uri: 'https://my-app.com/logo.png',
-    redirect_uris: ['http://127.0.0.1/callback'],
+    redirect_uris: ['https://skytools.chitowarlock.com/api/callback'],
     grant_types: ['authorization_code', 'refresh_token'],
     response_types: ['code'],
     application_type: 'web',
