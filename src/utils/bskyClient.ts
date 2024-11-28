@@ -28,11 +28,7 @@ export const bskyClient = new NodeOAuthClient({
 
   // Used to authenticate the client to the token endpoint. Will be used to
   // build the jwks object to be exposed on the "jwks_uri" endpoint.
-  keyset: await Promise.all([
-    JoseKey.fromJWK(import.meta.env.PRIVATE_KEY_1),
-    JoseKey.fromJWK(import.meta.env.PRIVATE_KEY_2),
-    JoseKey.fromJWK(import.meta.env.PRIVATE_KEY_3)
-  ]),
+  keyset: await Promise.all([JoseKey.fromJWK(import.meta.env.PRIVATE_KEY_1)]),
 
   // Interface to store authorization state data (during authorization flows)
   stateStore: {
