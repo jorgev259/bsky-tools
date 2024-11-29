@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro'
-import { bskyClient } from '../../utils/bskyClient'
+import { bskyClient } from '../../../utils/bskyClient'
 
 export const GET: APIRoute = async ({ redirect }) => {
   const handle = 'chitowarlock.com'

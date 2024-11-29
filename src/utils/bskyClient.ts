@@ -11,24 +11,29 @@ export const bskyClient = new NodeOAuthClient({
   // endpoint metadata, exposing the client metadata to the OAuth server.
   clientMetadata: {
     // Must be a URL that will be exposing this metadata
-    client_id: 'https://skytools.chitowarlock.com/api/client-metadata.json',
+    client_id:
+      'https://skytools.chitowarlock.com/api/bsky/client-metadata.json',
     client_name: 'Sky Tools',
     client_uri: 'https://skytools.chitowarlock.com',
     // logo_uri: 'https://my-app.com/logo.png',
-    redirect_uris: ['https://skytools.chitowarlock.com/api/callback'],
+    redirect_uris: ['https://skytools.chitowarlock.com/api/bsky/callback'],
     grant_types: ['authorization_code', 'refresh_token'],
     response_types: ['code'],
     application_type: 'web',
     token_endpoint_auth_method: 'private_key_jwt',
     dpop_bound_access_tokens: true,
-    jwks_uri: 'https://skytools.chitowarlock.com/api/jwks.json',
+    jwks_uri: 'https://skytools.chitowarlock.com/api/bsky/jwks.json',
     scope: 'atproto',
     token_endpoint_auth_signing_alg: 'sig'
   },
 
   // Used to authenticate the client to the token endpoint. Will be used to
   // build the jwks object to be exposed on the "jwks_uri" endpoint.
-  keyset: await Promise.all([JoseKey.fromJWK(import.meta.env.PRIVATE_KEY_1)]),
+  keyset: await Promise.all([
+    JoseKey.fromImportable(import.meta.env.PRIVATE_KEY_1),
+    JoseKey.fromImportable(import.meta.env.PRIVATE_KEY_2),
+    JoseKey.fromImportable(import.meta.env.PRIVATE_KEY_3)
+  ]),
 
   // Interface to store authorization state data (during authorization flows)
   stateStore: {
